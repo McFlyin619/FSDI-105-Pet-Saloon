@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/mystyle.css">
     <title>Register</title>
 </head>
@@ -19,31 +20,36 @@
     </header>
 
     <main>
-        <div id="info-main">
+        <div id="info-main" class="tc">
 
         </div>
-        <form action="#">
-            <p>
+
+        <form id="form"action="#">
+            <p id="p-name">
                 <label for="name">Name:</label>
                 <input type="text" id="petName">
             </p>
 
-            <p>
+            <p id="p-age">
                 <label for="age">Age:</label>
                 <input type="text" id="petAge">
             </p>
 
-            <p>
+            <p id="p-gender">
                 <label for="gender">Gender:</label>
-                <input type="text" id="petGender">
+                <select name="gender" id="petGender">
+                    <option value="invalid">Select One</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
             </p>
             
-            <p>
+            <p id="p-breed">
             <label for="breed">Breed:</label>
             <input type="text" id="petBreed">
             </p>
 
-            <p>
+            <p id="p-service">
                 <label for="service">Service:</label>
                 <select name="service" id="petService">
                     <option value="invalid">Select One</option>
@@ -53,17 +59,26 @@
                 </select>
             </p>
 
-            <p>
+            <p id="p-owner">
                 <label for="ownersName">Owners Name:</label>
                 <input type="text" id="ownersName">
             </p>
 
-            <p>
+            <p id="p-phone">
                 <label for="contactPhone">Phone:</label>
                 <input type="text" id="contactPhone">
             </p>
         </form>
-        <input type="button" value="Register">
+
+        <div class="tc">
+            <input class="btn" type="button" value="Register" onclick=" register();">
+        </div>
+
+        <div>
+            <ul id="pet-list" class="tc">
+                <!-- Display the Pets -->
+            </ul>
+        </div>
     </main>
 
     <footer>

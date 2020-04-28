@@ -49,21 +49,60 @@ class Pet{
 
 // Create pets (simple process)
 const scooby = new Pet('Scooby','50','Male','Great Dane','Full Service','Shaggy','6554332969');
-
+salon.pets.push(scooby);
+displayList(scooby);
 scooby.ownersInfo();
-
+// displayTable(scooby);
 // Create Register Function
 
+// Take values from form in HTML
+
+let txtName = document.getElementById('petName');
+let txtAge = document.getElementById('petAge');
+let txtGender = document.getElementById('petGender');
+let txtBreed = document.getElementById('petBreed');
+let txtService = document.getElementById('petService');
+let txtOwners = document.getElementById('ownersName');
+let txtPhone = document.getElementById('contactPhone');
+
+
 function register(){
-    // Take values from form in HTML
-
     // Create the pet
+    let thePet = new Pet(txtName.value,txtAge.value,txtGender.value,txtBreed.value,txtService.value,txtOwners.value,txtPhone.value)
 
-    // push the pet into the Pets array
-
-    // display on HTML
-
+    console.log(thePet);
+    // Push the pet into the Pets array
+    salon.pets.push(thePet);
+    // Display on HTML
+    displayList(thePet);
+    // displayTable(thePet);
     // Clear the inputs on the form 
+    clear();
+    // add onclick event on the button (HTML)- DONE
+    
+}
 
-    // add onclick event on the button (HTML)
+function displayTable(aPet){
+}
+
+function displayList(aPet){
+    let listBody = document.getElementById('pet-list');
+    let item = `
+        <li><b>Name:</b> ${aPet.name} | <b>Age:</b> ${aPet.age} <br> <b>Gender:</b> ${aPet.gender} | <b>Breed:</b> ${aPet.breed}<br> <b>Service:</b> ${aPet.service}<br>
+        <b>Owner:</b> ${aPet.ownersName} | <b>Phone:</b> ${aPet.contactPhone}</li><hr>
+    `;
+    listBody.innerHTML += item;
+
+    // Mortal hw add the other attributes om line 84 and apply css style
+    // Inmortal hw show all the pets in a table
+}
+
+function clear(){
+    txtName.value =' ';
+    txtAge.value = ' ';
+    txtGender.value = 'invalid';
+    txtBreed.value = ' ';
+    txtService.value = 'invalid'
+    txtOwners.value = ' ';
+    txtPhone.value = ' ';
 }
