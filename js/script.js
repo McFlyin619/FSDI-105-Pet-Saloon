@@ -2,7 +2,7 @@
 
 const salon = {
     name:'The Pettery Barn',
-    phone:'7779876544',
+    phone:'777-987-6544',
     address: {
         street:'Central Ave',
         number:'6969'
@@ -31,7 +31,7 @@ document.getElementById('info-main').innerHTML = `
 `;
 
 // Object Constructor
-
+let x = 0;
 class Pet{
     constructor(name,age,gender,breed,service,ownersName,contactPhone){
         this.name = name;
@@ -41,6 +41,8 @@ class Pet{
         this.service = service;
         this.ownersName = ownersName;
         this.contactPhone = contactPhone;
+        this.id = "pet" + x;
+        x += 1;
     }
     ownersInfo = function() {
         console.log(`${this.ownersName} ${this.contactPhone}`);
@@ -52,7 +54,7 @@ const scooby = new Pet('Scooby','50','Male','Great Dane','Full Service','Shaggy'
 salon.pets.push(scooby);
 displayList(scooby);
 scooby.ownersInfo();
-// displayTable(scooby);
+
 // Create Register Function
 
 // Take values from form in HTML
@@ -82,19 +84,42 @@ function register(){
     
 }
 
-function displayTable(aPet){
-}
 
 function displayList(aPet){
-    let listBody = document.getElementById('pet-list');
+    let tableBody = document.getElementById('rowPet');
     let item = `
-        <li><b>Name:</b> ${aPet.name} | <b>Age:</b> ${aPet.age} <br> <b>Gender:</b> ${aPet.gender} | <b>Breed:</b> ${aPet.breed}<br> <b>Service:</b> ${aPet.service}<br>
-        <b>Owner:</b> ${aPet.ownersName} | <b>Phone:</b> ${aPet.contactPhone}</li><hr>
+    <tr id="${aPet.id}">
+        <td>${aPet.name}</td>
+        <td>${aPet.age}</td>
+        <td>${aPet.gender}</td>
+        <td>${aPet.breed}</td>
+        <td>${aPet.service}</td>
+        <td>${aPet.ownersName}</td>
+        <td>${aPet.contactPhone}</td>
+        <td><button onclick='deletePet("${aPet.id}");'> Delete</button></td>
+    </tr>
     `;
-    listBody.innerHTML += item;
+    tableBody.innerHTML += item;
+}
 
-    // Mortal hw add the other attributes om line 84 and apply css style
-    // Inmortal hw show all the pets in a table
+function deletePet(petID) {
+    let row = document.getElementById(petID);
+    let indexDelete;
+
+    for (let i = 0; i < salon.pets.length; i++){
+        let selected = salon.pets[i];
+        if( petID === selected.id){
+            indexDelete = i;
+        }
+    }
+
+    salon.pets.splice(indexDelete,1);
+
+    row.remove();
+
+    myAlert();
+    
+    
 }
 
 function clear(){
@@ -106,3 +131,29 @@ function clear(){
     txtOwners.value = ' ';
     txtPhone.value = ' ';
 }
+
+function searchPet() {
+    let searchString = document.getElementById('txtSearch').value;
+    let ss = searchString.toLowerCase();
+    
+    for ( let j = 0; j<salon.pets.length; j++) {
+        let searched = salon.pets[j];
+        if (ss === searched.id || ss === searched.service.toLowerCase() || ss === searched.name.toLowerCase() || ss === searched.gender.toLowerCase()) {
+            document.getElementById('pet'+j).setAttribute('class','selected');
+        }
+    }
+
+
+}
+
+// search by pets name
+
+function myAlert() {
+    document.getElementById('myAlert').className = 'alert alert-danger alert-dismissible fade show';
+}
+
+function closeAlert() {
+    document.getElementById('myAlert').className = 'alert alert-danger alert-dismissible fade';
+
+}
+

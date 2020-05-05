@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/mystyle.css">
     <title>Register</title>
@@ -19,12 +20,12 @@
         </div>
     </header>
 
-    <main>
+    <main class="container">
         <div id="info-main" class="tc">
 
         </div>
 
-        <form id="form"action="#">
+        <form id="form" action="#">
             <p id="p-name">
                 <label for="name">Name:</label>
                 <input type="text" id="petName">
@@ -73,18 +74,46 @@
         <div class="tc">
             <input class="btn" type="button" value="Register" onclick=" register();">
         </div>
-
-        <div>
+        <hr>
+        <div id="petTable">
             <h1 class="tc">Your Registered Pets</h1>
-            <ul id="pet-list" class="tc">
-                <!-- Display the Pets -->
-            </ul>
+            <div class="tc">
+                <input type="search" name="search" id="txtSearch">
+                <button class="btn-search"onclick="searchPet();">Search</button>
+            </div>
+
+            <div id="myAlert" class="alert alert-danger alert-dismissible fade" role="alert">
+                <button type="button" class="close" onclick="closeAlert();">&times;</button>
+               <h3 class="tc">Pet deleted!</h3> 
+
+            </div>
+            <!-- <ul id="pet-list" class="tc"> -->
+        
+            <!-- </ul> -->
+            
+            <table class="table table-striped">
+                <thead>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Breed</th>
+                    <th>Service</th>
+                    <th>Owner</th>
+                    <th>Phone</th>
+                    <th>Delete Pet</th>
+                </thead>
+
+                <tbody id="rowPet">
+                    <!-- display pets -->
+                </tbody>
+            </table>
         </div>
     </main>
 
-    <footer>
-
+    <footer class="tc">
+        <h2>FOOTER</h2>
     </footer>
     <script src="js/script.js"></script>
+    <script src="js/jquery.min.js"></script>
 </body>
 </html>
